@@ -104,6 +104,10 @@ const Sidebar = () => {
             ))}
           </li>
         ))}
+        <button className={styles.logout}>
+          <MdLogout />
+          Logout
+        </button>
         
        
     </div>

@@ -3,7 +3,7 @@ import styles from "@/app/ui/dashboard/users/users.module.css";
 import Search from '@/app/ui/dashboard/search/search';
 import Link from 'next/link';
 import Pagination from '@/app/ui/dashboard/pagination/pagination';
-
+import Image from 'next/image';
 const UsersPage = () => {
   return (
     <div className={styles.container}>
@@ -25,33 +25,34 @@ const UsersPage = () => {
         </tr>
       </thead>
       <tbody>
-        {/* {users.map((user) => (
-          <tr key={user.id}>
+     
+          <tr >
             <td>
               <div className={styles.user}>
                 <Image
-                  src={user.img || "/noavatar.png"}
+                  src={"/noavatar.png"}
                   alt=""
                   width={40}
                   height={40}
                   className={styles.userImage}
                 />
-                {user.username}
+                "john Doe"
               </div>
             </td>
-            <td>{user.email}</td>
-            <td>{user.createdAt?.toString().slice(4, 16)}</td>
-            <td>{user.isAdmin ? "Admin" : "Client"}</td>
-            <td>{user.isActive ? "active" : "passive"}</td>
+            <td>"example@gmail.com"</td>
+            <td>20/10/2010
+            </td>
+            <td>"Admin" </td>
+            <td>"active" </td>
             <td>
               <div className={styles.buttons}>
-                <Link href={`/dashboard/users/${user.id}`}>
+                <Link href={`/dashboard/users/test`}>
                   <button className={`${styles.button} ${styles.view}`}>
                     View
                   </button>
                 </Link>
-                <form action={deleteUser}>
-                  <input type="hidden" name="id" value={(user.id)} />
+                <form >
+                  <input type="hidden" name="id"  />
                   <button className={`${styles.button} ${styles.delete}`}>
                     Delete
                   </button>
@@ -59,7 +60,7 @@ const UsersPage = () => {
               </div>
             </td>
           </tr>
-        ))} */}
+ 
       </tbody>
     </table>
     <Pagination  />

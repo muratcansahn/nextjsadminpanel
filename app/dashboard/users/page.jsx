@@ -5,9 +5,12 @@ import Link from 'next/link';
 import Pagination from '@/app/ui/dashboard/pagination/pagination';
 import Image from 'next/image';
 import { fetchUsers } from '@/app/lib/data';
-const UsersPage = async () => {
-  const users = await fetchUsers();
-  console.log(users)
+const UsersPage = async ({
+  searchParams,
+}) => {
+  const q = searchParams?.q || '';
+  console.log("q",q)
+  const users = await fetchUsers(q);
   return (
     <div className={styles.container}>
     <div className={styles.top}>
@@ -40,14 +43,14 @@ const UsersPage = async () => {
                   height={40}
                   className={styles.userImage}
                 />
-             {user.name}
+             {user.username}
               </div>
             </td>
             <td>{user.email}</td>
-            <td>{user.createdAt}
-            </td>
-            <td>{user.isAdmin} </td>
-            <td>{user.isActive} </td>
+            <td>{user.createdAt?.toString().slice(4, 16)}</td>
+            
+            <td>{user.isAdmin ? "Admin" : "Client"} </td>
+            <td>{user.isActive ? "Active" : "Passive" } </td>
             <td>
               <div className={styles.buttons}>
                 <Link href={`/dashboard/users/test`}>

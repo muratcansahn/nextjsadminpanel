@@ -3,8 +3,18 @@ import styles from "@/app/ui/dashboard/products/products.module.css";
 import Search from '@/app/ui/dashboard/search/search';
 import Link from 'next/link';
 import Pagination from '@/app/ui/dashboard/pagination/pagination';
+import { fetchProducts } from '@/app/lib/data';
+import {searchParams} from 'next/navigation'
+import Image from 'next/image';
 
-const ProductsPage = () => {
+const ProductsPage = async({
+  searchParams,
+}) => {
+  const q = searchParams?.q || '';
+  const page = searchParams?.page || 1;
+
+  const {count,products} = await fetchProducts(q,page);
+  console.log(count,products)
   return (
     <div className={styles.container}>
       <div className={styles.top}>
@@ -25,7 +35,7 @@ const ProductsPage = () => {
           </tr>
         </thead>
         <tbody>
-          {/* {products.map((product) => (
+          {products.map((product) => (
             <tr key={product.id}>
               <td>
                 <div className={styles.product}>
@@ -50,7 +60,7 @@ const ProductsPage = () => {
                       View
                     </button>
                   </Link>
-                  <form action={deleteProduct}>
+                  <form >
                     <input type="hidden" name="id" value={product.id} />
                     <button className={`${styles.button} ${styles.delete}`}>
                       Delete
@@ -59,10 +69,10 @@ const ProductsPage = () => {
                 </div>
               </td>
             </tr>
-          ))} */}
+          ))}
         </tbody>
       </table>
-      <Pagination  />
+      <Pagination count={count} />
     </div>
   );
 };

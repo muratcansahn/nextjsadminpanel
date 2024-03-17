@@ -2,8 +2,7 @@
 import React from 'react'
 import styles from "@/app/ui/dashboard/search/search.module.css";
 import { MdSearch } from 'react-icons/md';
-import { usePathname, useSearchParams } from 'next/navigation';
-import { useRouter } from 'next/navigation';
+import { usePathname, useSearchParams,useRouter } from 'next/navigation';
 import { useDebouncedCallback } from 'use-debounce';
 
 
@@ -16,6 +15,7 @@ const params = new URLSearchParams(searchParams)
 const handleChange = useDebouncedCallback((e) => {
   const value = e.target.value
   const params = new URLSearchParams(searchParams)
+  params.set("page", "1")
 
   if (e.target.value ) {
     if(e.target.value.length >2 )  params.set('q', value)

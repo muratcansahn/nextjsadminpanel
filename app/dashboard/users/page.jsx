@@ -5,6 +5,8 @@ import Link from 'next/link';
 import Pagination from '@/app/ui/dashboard/pagination/pagination';
 import Image from 'next/image';
 import { fetchUsers } from '@/app/lib/data';
+
+
 const UsersPage = async ({
   searchParams,
 }) => {
